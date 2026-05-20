@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ssl-checker.vercel.app/sitemap.xml
