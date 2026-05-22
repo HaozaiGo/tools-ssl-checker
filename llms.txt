@@ -1,0 +1,44 @@
+# SSL Checker
+
+> An online SSL checker for inspecting TLS certificate validity, expiry date, issuer, subject, SANs, protocol version, and cipher information.
+
+Canonical URL: https://ssl-checker.vercel.app/
+Chinese URL: https://ssl-checker.vercel.app/zh/
+
+## What it does
+
+- Check SSL/TLS certificate validity
+- Show expiry date and days remaining
+- Inspect issuer and subject details
+- List SAN domain names
+- Detect TLS protocol version
+- Display cipher suite information
+
+## Best for
+
+- Monitor certificate expiry
+- Debug HTTPS setup
+- Inspect certificate chain details
+- Verify domain certificate information
+
+## Privacy
+
+This tool is designed for browser-based processing whenever possible. User-provided content is not stored by Dudu Tools.
+
+## FAQ
+
+### What does an SSL checker do?
+
+It checks whether a site certificate is valid, when it expires, who issued it, and which domain names it covers.
+
+### What certificate details are shown?
+
+The tool can show expiry, issuer, subject, SANs, TLS protocol, cipher suite, signature algorithm, public key size, and fingerprints when available.
+
+### What happens when an SSL certificate expires?
+
+Browsers show security warnings and users may be blocked from accessing the site, which can harm trust and organic performance.
+
+### Do I need to include https://?
+
+No. Enter the domain name only, such as example.com.

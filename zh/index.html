@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSL Checker - SSL证书检查在线工具 | 域名HTTPS证书验证</title>
+  <meta name="description" content="免费在线SSL证书检查工具。检查域名SSL/TLS证书有效期、颁发机构、主题信息、SANs、协议版本、加密套件。浏览器端输入，服务器端安全检查。">
+  <meta name="keywords" content="ssl checker, ssl certificate checker, tls check, https check, ssl证书检查, 证书有效期, 域名证书验证">
+  <meta name="author" content="Dudu Tools">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ssl-checker.vercel.app/zh/">
+  <link rel="alternate" hreflang="en" href="https://ssl-checker.vercel.app/">
+  <link rel="alternate" hreflang="zh-CN" href="https://ssl-checker.vercel.app/zh/">
+  <link rel="alternate" hreflang="x-default" href="https://ssl-checker.vercel.app/">
+<!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SSL Checker - SSL证书检查在线工具">
+  <meta property="og:description" content="免费在线SSL证书检查工具。检查域名SSL/TLS证书有效期、颁发机构、SANs、协议版本。">
+  <meta property="og:url" content="https://ssl-checker.vercel.app/zh/">
+  <meta property="og:site_name" content="SSL Checker">
+  <meta property="og:locale" content="zh_CN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SSL Checker - SSL证书检查在线工具">
+  <meta name="twitter:description" content="免费在线SSL证书检查工具。检查证书有效期、颁发机构、SANs、协议版本。">
+
+<link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SSL Checker",
+  "description": "免费在线SSL证书检查工具。检查域名SSL/TLS证书有效期、颁发机构、主题信息、SANs、协议版本、加密套件。浏览器端输入，服务器端安全检查。",
+  "url": "https://ssl-checker.vercel.app/zh/",
+  "inLanguage": "zh-CN",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Check SSL/TLS certificate validity",
+    "Show expiry date and days remaining",
+    "Inspect issuer and subject details",
+    "List SAN domain names",
+    "Detect TLS protocol version",
+    "Display cipher suite information"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dudu Tools"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "zh-CN",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "SSL Checker 有什么用？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "它可以检查证书是否有效、何时过期、由谁颁发以及覆盖哪些域名。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "会显示哪些证书信息？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可显示有效期、颁发机构、主题、SANs、TLS 协议、加密套件、签名算法、公钥位数和指纹等。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "SSL 证书过期会怎样？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "浏览器会显示安全警告，用户可能无法正常访问网站，也会影响信任度。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "需要输入 https:// 吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不需要，输入 example.com 这样的域名即可。"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <h1 class="logo">🔒 SSL Checker</h1>
+        <p class="tagline">检查 SSL/TLS 证书 · 有效期 · 颁发机构 · 协议版本 · 加密套件</p>
+        <nav class="language-switcher" aria-label="Language"><a class="" href="../" lang="en">EN</a><a class="active" href="./" lang="zh-CN">中文</a></nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="main container">
+    <div class="card">
+      <!-- Input -->
+      <div class="input-section">
+        <label for="domain-input" class="input-label">输入域名</label>
+        <div class="input-row">
+          <input type="text" id="domain-input" class="domain-input" placeholder="example.com" spellcheck="false" value="github.com" autofocus>
+          <button class="btn btn-primary btn-lg" onclick="checkSSL()">🔍 检查</button>
+        </div>
+        <div class="input-hint">输入域名（无需 https://），按回车或点击检查</div>
+      </div>
+
+      <!-- History -->
+      <div class="history-section" id="history-section">
+        <div class="history-header">
+          <span>最近检查</span>
+          <button class="btn btn-sm" onclick="clearHistory()">清空</button>
+        </div>
+        <div id="history-list" class="history-list"></div>
+      </div>
+
+      <!-- Loading -->
+      <div id="loading-section" class="loading-section" style="display:none">
+        <div class="spinner"></div>
+        <p>正在检查 <span id="checking-domain" class="checking-domain"></span> 的 SSL 证书...</p>
+        <p class="loading-hint">正在建立 TLS 连接 · 获取证书信息</p>
+      </div>
+
+      <!-- Result -->
+      <div id="result-section" class="result-section" style="display:none"></div>
+    </div>
+    <section class="seo-content" aria-label="工具说明和常见问题">
+      <div class="seo-block">
+        <h2>SSL Checker 是什么？</h2>
+        <p>一个用于检查 SSL/TLS 证书有效期、颁发机构、主题信息、SANs、协议版本和加密套件的在线工具。</p>
+      </div>
+      <div class="seo-grid">
+        <div class="seo-block">
+          <h2>主要功能</h2>
+          <ul><li>Check SSL/TLS certificate validity</li><li>Show expiry date and days remaining</li><li>Inspect issuer and subject details</li><li>List SAN domain names</li><li>Detect TLS protocol version</li><li>Display cipher suite information</li></ul>
+        </div>
+        <div class="seo-block">
+          <h2>适合场景</h2>
+          <ul><li>开发、调试或发布前的日常处理</li><li>在浏览器端快速完成任务，减少数据上传</li><li>为技术文档、测试数据或线上内容做准备</li></ul>
+        </div>
+      </div>
+      <div class="seo-block faq-list">
+        <h2>常见问题</h2>
+        <details><summary>SSL Checker 有什么用？</summary><p>它可以检查证书是否有效、何时过期、由谁颁发以及覆盖哪些域名。</p></details>
+        <details><summary>会显示哪些证书信息？</summary><p>可显示有效期、颁发机构、主题、SANs、TLS 协议、加密套件、签名算法、公钥位数和指纹等。</p></details>
+        <details><summary>SSL 证书过期会怎样？</summary><p>浏览器会显示安全警告，用户可能无法正常访问网站，也会影响信任度。</p></details>
+        <details><summary>需要输入 https:// 吗？</summary><p>不需要，输入 example.com 这样的域名即可。</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>🔒 SSL Checker — 浏览器端输入 · 服务器端安全检查</p>
+      <p class="footer-small">纯前端工具 · 零服务端 · 隐私安全</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>
