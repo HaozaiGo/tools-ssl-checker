@@ -90,3 +90,6 @@ body{font-family:var(--font-ui);background:var(--bg);color:var(--text);min-heigh
 .faq-list summary { color: var(--text); cursor: pointer; font-weight: 600; }
 .faq-list details p { margin-top: 8px; }
 @media (max-width: 720px) { .language-switcher { margin-left: 0; } .seo-grid { grid-template-columns: 1fr; } }
+.related-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.related-links a { color: var(--text); text-decoration: none; border: 1px solid var(--border); border-radius: var(--radius-xs); padding: 7px 10px; background: rgba(255,255,255,0.04); }
+.related-links a:hover { border-color: var(--primary); color: #fff; }

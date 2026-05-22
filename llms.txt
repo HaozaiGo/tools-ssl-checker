@@ -2,8 +2,8 @@
 
 > An online SSL checker for inspecting TLS certificate validity, expiry date, issuer, subject, SANs, protocol version, and cipher information.
 
-Canonical URL: https://ssl-checker.vercel.app/
-Chinese URL: https://ssl-checker.vercel.app/zh/
+Canonical URL: https://ssl.toolkitbox.org/
+Chinese URL: https://ssl.toolkitbox.org/zh/
 
 ## What it does
 
@@ -23,7 +23,7 @@ Chinese URL: https://ssl-checker.vercel.app/zh/
 
 ## Privacy
 
-This tool is designed for browser-based processing whenever possible. User-provided content is not stored by Dudu Tools.
+This tool is designed for browser-based processing whenever possible. User-provided content is not stored by ToolkitBox.
 
 ## FAQ
 
