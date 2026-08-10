@@ -18,10 +18,15 @@
   <meta property="og:description" content="免费在线SSL证书检查工具。检查域名SSL/TLS证书有效期、颁发机构、SANs、协议版本。">
   <meta property="og:url" content="https://ssl.toolkitbox.org/zh/">
   <meta property="og:site_name" content="SSL Checker">
+  <meta property="og:image" content="https://ssl.toolkitbox.org/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SSL Checker - SSL证书检查在线工具">
   <meta property="og:locale" content="zh_CN">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://ssl.toolkitbox.org/og.png">
   <meta name="twitter:title" content="SSL Checker - SSL证书检查在线工具">
   <meta name="twitter:description" content="免费在线SSL证书检查工具。检查证书有效期、颁发机构、SANs、协议版本。">
 
@@ -98,6 +103,27 @@
   ]
 }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "inLanguage": "zh-CN",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ToolkitBox",
+      "item": "https://toolkitbox.org/zh/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "SSL Checker",
+      "item": "https://ssl.toolkitbox.org/zh/"
+    }
+  ]
+}
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5333037258750046"
      crossorigin="anonymous"></script>
 </head>
@@ -158,12 +184,35 @@
           <ul><li>开发、调试或发布前的日常处理</li><li>在浏览器端快速完成任务，减少数据上传</li><li>为技术文档、测试数据或线上内容做准备</li></ul>
         </div>
       </div>
+      <div class="seo-block example-workflow">
+        <h2>示例工作流</h2>
+        <ol>
+          <li>输入域名即可，不需要附带账号、密码或内部说明。</li>
+          <li>检查证书颁发者、到期时间、域名列表、TLS 版本和加密套件。</li>
+          <li>根据剩余天数判断是否需要立即续期。</li>
+          <li>把结果记录到部署清单或监控备注里。</li>
+        </ol>
+      </div>
+
+      <div class="seo-block safe-use">
+        <h2>安全使用提示</h2>
+        <ul>
+          <li>这里检查的是公开证书信息，不等同完整安全审计。</li>
+          <li>生产环境证书过期不能只靠一次性手动检查。</li>
+          <li>如果有 CDN、代理和源站多层 TLS，需要分别确认。</li>
+        </ul>
+      </div>
+
       <div class="seo-block faq-list">
         <h2>常见问题</h2>
         <details><summary>SSL Checker 有什么用？</summary><p>它可以检查证书是否有效、何时过期、由谁颁发以及覆盖哪些域名。</p></details>
         <details><summary>会显示哪些证书信息？</summary><p>可显示有效期、颁发机构、主题、SANs、TLS 协议、加密套件、签名算法、公钥位数和指纹等。</p></details>
         <details><summary>SSL 证书过期会怎样？</summary><p>浏览器会显示安全警告，用户可能无法正常访问网站，也会影响信任度。</p></details>
         <details><summary>需要输入 https:// 吗？</summary><p>不需要，输入 example.com 这样的域名即可。</p></details>
+      </div>
+      <div class="seo-block related-guides">
+        <h2>相关指南</h2>
+        <p><a href="https://toolkitbox.org/zh/guides/ssl-certificate-checking/">SSL 证书异常时应该先检查什么</a></p>
       </div>
       <div class="seo-block related-tools">
         <h2>相关工具</h2>
