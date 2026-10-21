@@ -28,12 +28,24 @@
     {
       "src": "*.xml",
       "use": "@vercel/static"
+    },
+    {
+      "src": "og.*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "/api/check(?:\\.js)?/?",
+      "dest": "/api/check.js"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/zh/?",
+      "dest": "/zh/index.html"
     },
     {
       "src": "/(.*)",

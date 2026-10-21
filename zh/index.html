@@ -144,10 +144,11 @@
       <div class="input-section">
         <label for="domain-input" class="input-label">输入域名</label>
         <div class="input-row">
-          <input type="text" id="domain-input" class="domain-input" placeholder="example.com" spellcheck="false" value="github.com" autofocus>
+          <input type="text" id="domain-input" class="domain-input" placeholder="example.com" spellcheck="false" autocomplete="off" autocapitalize="none" maxlength="253" aria-describedby="input-hint">
+          <button class="btn btn-secondary btn-lg" type="button" onclick="loadExample()">示例</button>
           <button class="btn btn-primary btn-lg" onclick="checkSSL()">🔍 检查</button>
         </div>
-        <div class="input-hint">输入域名（无需 https://），按回车或点击检查</div>
+        <div class="input-hint" id="input-hint">输入公开域名（无需 https://）。点击检查后，主机名会发送到 ToolkitBox 服务端，仅用于建立 TLS 连接并返回公开证书信息。</div>
       </div>
 
       <!-- History -->
@@ -160,14 +161,14 @@
       </div>
 
       <!-- Loading -->
-      <div id="loading-section" class="loading-section" style="display:none">
+      <div id="loading-section" class="loading-section" style="display:none" role="status">
         <div class="spinner"></div>
         <p>正在检查 <span id="checking-domain" class="checking-domain"></span> 的 SSL 证书...</p>
         <p class="loading-hint">正在建立 TLS 连接 · 获取证书信息</p>
       </div>
 
       <!-- Result -->
-      <div id="result-section" class="result-section" style="display:none"></div>
+      <div id="result-section" class="result-section" style="display:none" aria-live="polite"></div>
     </div>
     <section class="seo-content" aria-label="工具说明和常见问题">
       <div class="seo-block">
@@ -177,11 +178,11 @@
       <div class="seo-grid">
         <div class="seo-block">
           <h2>主要功能</h2>
-          <ul><li>Check SSL/TLS certificate validity</li><li>Show expiry date and days remaining</li><li>Inspect issuer and subject details</li><li>List SAN domain names</li><li>Detect TLS protocol version</li><li>Display cipher suite information</li></ul>
+          <ul><li>检查 SSL/TLS 证书信任、域名匹配和有效期</li><li>显示到期日期和剩余天数</li><li>查看颁发机构和主体信息</li><li>列出 SAN 域名</li><li>检测 TLS 协议版本</li><li>显示加密套件信息</li></ul>
         </div>
         <div class="seo-block">
           <h2>适合场景</h2>
-          <ul><li>开发、调试或发布前的日常处理</li><li>在浏览器端快速完成任务，减少数据上传</li><li>为技术文档、测试数据或线上内容做准备</li></ul>
+          <ul><li>检查公开站点的证书到期时间</li><li>排查 HTTPS 配置和域名匹配问题</li><li>核对部署后的证书信息</li></ul>
         </div>
       </div>
       <div class="seo-block example-workflow">
@@ -201,6 +202,10 @@
           <li>生产环境证书过期不能只靠一次性手动检查。</li>
           <li>如果有 CDN、代理和源站多层 TLS，需要分别确认。</li>
         </ul>
+      </div>
+      <div class="seo-block">
+        <h2>这项检查怎样处理</h2>
+        <p>SSL 检查与 ToolkitBox 的文本工具不同，无法只依赖浏览器本地数据。只有点击“检查”后，公开主机名才会发送到服务端函数。它会先解析域名并拒绝私网或保留地址，然后连接 443 端口读取 TLS 证书。请不要输入账号、密码、私人备注或完整 URL。</p>
       </div>
 
       <div class="seo-block faq-list">

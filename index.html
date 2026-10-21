@@ -149,10 +149,11 @@
       <div class="input-section">
         <label for="domain-input" class="input-label">Enter domain</label>
         <div class="input-row">
-          <input type="text" id="domain-input" class="domain-input" placeholder="example.com" spellcheck="false" value="github.com" autofocus>
+          <input type="text" id="domain-input" class="domain-input" placeholder="example.com" spellcheck="false" autocomplete="off" autocapitalize="none" maxlength="253" aria-describedby="input-hint">
+          <button class="btn btn-secondary btn-lg" type="button" onclick="loadExample()">Example</button>
           <button class="btn btn-primary btn-lg" onclick="checkSSL()">Check</button>
         </div>
-        <div class="input-hint">Enter a domain without https://, then press Enter or click check</div>
+        <div class="input-hint" id="input-hint">Enter a public domain without https://. The hostname is sent to the ToolkitBox server only to open a TLS connection and return public certificate details.</div>
       </div>
 
       <!-- History -->
@@ -165,14 +166,14 @@
       </div>
 
       <!-- Loading -->
-      <div id="loading-section" class="loading-section" style="display:none">
+      <div id="loading-section" class="loading-section" style="display:none" role="status">
         <div class="spinner"></div>
         <p>Checking <span id="checking-domain" class="checking-domain"></span> SSL certificate...</p>
         <p class="loading-hint">Opening TLS connection · reading certificate details</p>
       </div>
 
       <!-- Result -->
-      <div id="result-section" class="result-section" style="display:none"></div>
+      <div id="result-section" class="result-section" style="display:none" aria-live="polite"></div>
     </div>
     <section class="seo-content" aria-label="Tool guide and frequently asked questions">
       <div class="seo-block">
@@ -206,6 +207,10 @@
           <li>Do not rely on a one-time check for production expiry monitoring.</li>
           <li>Confirm CDN, proxy, and origin certificates separately when your stack has multiple TLS layers.</li>
         </ul>
+      </div>
+      <div class="seo-block">
+        <h2>How this check is processed</h2>
+        <p>Unlike ToolkitBox text utilities, an SSL check cannot run only against local browser data. After you click Check, the public hostname is sent to a server-side function. It resolves the hostname, rejects private or reserved addresses, and opens a TLS connection on port 443. Do not enter credentials, private notes, or full URLs.</p>
       </div>
 
       <div class="seo-block faq-list">
