@@ -1,0 +1,11 @@
+name: Site quality
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    uses: HaozaiGo/imageprivacy-tools/.github/workflows/site-checks.yml@main
