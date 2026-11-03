@@ -27,6 +27,7 @@ test('unrelated API paths do not map to the check handler', () => {
 for (const [url, file] of [
   ['/', '/index.html'], ['/zh', '/zh/index.html'], ['/zh/', '/zh/index.html'],
   ['/zh/index.html', '/zh/index.html'], ['/js/app.js', '/js/app.js'],
+  ['/privacy-controls.js', '/privacy-controls.js'],
   ['/css/style.css', '/css/style.css'], ['/robots.txt', '/robots.txt'],
   ['/ads.txt', '/ads.txt'], ['/sitemap.xml', '/sitemap.xml'], ['/og.png', '/og.png'],
 ]) {

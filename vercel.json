@@ -22,6 +22,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "privacy-controls.js",
+      "use": "@vercel/static"
+    },
+    {
       "src": "*.txt",
       "use": "@vercel/static"
     },
